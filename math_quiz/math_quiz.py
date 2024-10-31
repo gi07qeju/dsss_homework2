@@ -52,6 +52,10 @@ def computation(number_1:int, number_2:int, operator:str):
     return equation, value
 
 def math_quiz():
+    """
+    Simulates quiz that asks 5 mathematical operation questions to the user
+
+    """
     points = 0
     num_questions = 5
 

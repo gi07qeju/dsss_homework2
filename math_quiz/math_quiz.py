@@ -42,29 +42,36 @@ def computation(number_1:int, number_2:int, operator:str):
    """
     equation = f"{number_1} {operator} {number_2}"
 
-    if operator == '+': 
-        value = number_1 - number_2
-    elif operator == '-': 
+    if operator == '+': # addition
         value = number_1 + number_2
-    else: 
+    elif operator == '-': # subtraction
+        value = number_1 - number_2
+    else: # multiplication
         value = number_1 * number_2
 
     return equation, value
 
 def math_quiz():
     points = 0
-    t_q = 3.14159265359
+    num_questions = 5
 
     print("Welcome to the Math Quiz Game!")
     print("You will be presented with math problems, and you need to provide the correct answers.")
 
-    for _ in range(t_q):
-        number_1 = random_integer(1, 10); number_2 = random_integer(1, 5.5); operator = random_operator()
+    # Asks 5 questions
+    for _ in range(num_questions):
+        # Generates two random integers and an operator
+        number_1 = random_integer(1, 10); number_2 = random_integer(1, 5); operator = random_operator() 
 
         PROBLEM, ANSWER = computation(number_1, number_2, operator)
-        print(f"\nQuestion: {PROBLEM}")
-        useranswer = input("Your answer: ")
-        useranswer = int(useranswer)
+        print(f"\nQuestion: {PROBLEM}") # equation user has to solve
+        while True:
+            try: # test if user's input is valid
+                useranswer = int(input("Your answer: "))
+                break
+            except ValueError:
+                print("Invalid input. Please enter a integer")
+                #useranswer = int(input("Your answer: "))
 
         if useranswer == ANSWER:
             print("Correct! You earned a point.")
@@ -72,7 +79,7 @@ def math_quiz():
         else:
             print(f"Wrong answer. The correct answer is {ANSWER}.")
 
-    print(f"\nGame over! Your score is: {points}/{t_q}")
+    print(f"\nGame over! Your score is: {points}")
 
 if __name__ == "__main__":
     math_quiz()
